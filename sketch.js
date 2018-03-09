@@ -11,7 +11,7 @@ var birdIcon;
 var pipeBodySprite;
 var bgImg;
 var bgX = 0;
-var apeed = 2;
+
 var touched = false;
 var prevTouched = touched;
 
@@ -32,7 +32,7 @@ function draw() {
   background(0);
   // Draw our background image, then move it at the same speed as the pipes
   image(bgImg, bgX, 0, bgImg.width, height);
-  bgX -= speed*0.5;
+  bgX -= pipes[0].speed;
 
   // this handles the "infinite loop" by checking if the right
   // edge of the image would be on the screen, if it is draw a
