@@ -5,14 +5,15 @@
 
 class Pipe {
   constructor() {
-    this.spacing = random(40, height / 2);
-    this.top = random(height - this.spacing);
+    this.spacing = 100;
+    this.top = random(height/6, 3/4*height);
     this.bottom = this.top + this.spacing;
 
     this.x = width;
     this.w = 20;
     this.speed = 2;
 
+    this.passed=false;
     this.highlight = false;
   }
 
@@ -20,6 +21,7 @@ class Pipe {
     if (bird.y < this.top || bird.y > height - this.bottom) {
       if (bird.x > this.x && bird.x < this.x + this.w) {
         this.highlight = true;
+        this.passed=true;
         return true;
       }
     }
@@ -27,13 +29,17 @@ class Pipe {
     return false;
   }
 
+  pass(bird) {
+        if (bird.x > this.x && !this.passed) {
+            this.passed=true;
+            return true;
+        }
+        return false;
+  }
+    
   show() {
-    fill(255);
-    if (this.highlight) {
-      fill(255, 0, 0);
-    }
-    rect(this.x, 0, this.w, this.top);
-    rect(this.x, height - this.bottom, this.w, this.bottom);
+    image(pipeBodySprite,this.x,0,this.w,this.top);
+    image(pipeBodySprite,this.x,this.bottom,this.w,height);
   }
 
   update() {
