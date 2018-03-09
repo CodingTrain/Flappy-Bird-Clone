@@ -11,9 +11,14 @@ function Bird() {
   this.lift = -15;
   this.velocity = 0;
 
+  this.icon = loadImage("graphics/train.png");
+  this.width = 64;
+  this.height = 64;
+
   this.show = function() {
-    fill(255);
-    ellipse(this.x, this.y, 32, 32);
+    // draw the icon CENTERED around the X and Y coords of the bird object
+    // TODO: Refactor code so Bird is called Train
+    image(this.icon, this.x - (this.width / 2), this.y - (this.height / 2), this.width, this.height);
   }
 
   this.up = function() {
