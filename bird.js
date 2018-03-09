@@ -1,13 +1,14 @@
 // Daniel Shiffman
 // http://codingtra.in
 // http://patreon.com/codingtrain
-// Code for: https://youtu.be/cXgA1d_E-jY
+// Code for: https://youtu.be/cXgA1d_E-jY&
 
 class Bird {
   constructor() {
     this.y = height/2;
     this.x = 64;
-
+    this.size = 48;
+    
     this.gravity = 0.6;
     this.lift = -15;
     this.velocity = 0;
@@ -31,13 +32,13 @@ class Bird {
     this.velocity *= 0.9;
     this.y += this.velocity;
     
-    if (this.y >= height - this.height/2) {
-      this.y = height - this.height/2;
+    if (this.y >= height - this.size/2) {
+      this.y = height - this.size/2;
       this.velocity = 0;
     }
 
-    if (this.y <= this.height/2) {
-      this.y = this.height/2;
+    if (this.y <= this.size/2) {
+      this.y = this.size/2;
       this.velocity = 0;
     }
   }
