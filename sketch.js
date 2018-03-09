@@ -8,6 +8,7 @@ var bird;
 var pipes = [];
 var bg;
 var score=0;
+var maxScore=0;
 
 var trainSprite, pipeSprite,pipBodySprite,bgSprite;
 
@@ -66,13 +67,15 @@ function draw() {
 
 function showScores() {
     textSize(32);
-    text("score: "+score,1,32 );    
+    text("score: "+score,1,32 );
+    text("record: "+maxScore,1,64 );   
 }
 
 function gameover() {
       console.log("HIT");
       textSize(64);  
       text('HIT',width/2,height/2);
+      maxScore=max(score,maxScore);
       score=0;
 }
 function keyPressed() {
