@@ -10,15 +10,15 @@ var bg;
 var score=0;
 var maxScore=0;
 
-var trainSprite, pipeSprite,pipBodySprite,bgSprite;
+var trainSprite, pipeSprite,pipBodySprite;
 
 function preload() {
     
 trainSprite = loadImage("./img/train.png");
 //pipeSprite = loadImage("./img/pipe.png");
 pipeBodySprite = loadImage("./img/pipe_body.png");
-bgSprite = loadImage("./img/background.png");
-    
+
+  
 }
 
 
@@ -31,7 +31,6 @@ function setup() {
 
 function draw() {
   background(0);
-  bg.update();
     
   for (var i = pipes.length - 1; i >= 0; i--) {
     pipes[i].show();
