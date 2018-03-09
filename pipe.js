@@ -16,10 +16,11 @@ class Pipe {
     this.highlight = false;
   }
 
-  hits() {
-    if (this.bird.y-this.bird.size/2 < this.top || this.bird.y+this.bird.size/2 > this.bottom) {
-      if (this.bird.x > this.x && this.bird.x < this.x + this.w) {
+  hits(bird) {
+    if (bird.y - (bird.height / 2) < this.top || bird.y + (bird.height / 2) > this.bottom) {
+      if (bird.x + (bird.width / 2) > this.x + this.w && bird.x - (bird.width / 2) < this.x) {
         this.highlight = true;
+        this.passed = true;
         return true;
       }
     }
@@ -27,13 +28,18 @@ class Pipe {
     return false;
   }
 
-  show() {
-    fill(255);
-    if (this.highlight) {
-      fill(255, 0, 0);
+  //this function is used to calculate scores and checks if we've went through the pipes
+  pass(bird) {
+    if (bird.x > this.x && !this.passed) {
+      this.passed = true;
+      return true;
     }
-    rect(this.x, 0, this.w, this.top);
-    rect(this.x, this.bottom, this.w, height - this.bottom);
+    return false;
+  }
+
+  show() {
+    image(pipeBodySprite, this.x, 0, this.w, this.top);
+    image(pipeBodySprite, this.x, this.bottom, this.w, height);
   }
 
   update() {
