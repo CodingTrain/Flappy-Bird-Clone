@@ -12,12 +12,11 @@ class Pipe {
     this.x = width;
     this.w = 20;
     this.speed = 2;
-
     this.highlight = false;
   }
 
   hits(bird) {
-    if (bird.y < this.top || bird.y > height - this.bottom) {
+    if (bird.y < this.top || bird.y > this.bottom) {
       if (bird.x > this.x && bird.x < this.x + this.w) {
         this.highlight = true;
         return true;
@@ -33,7 +32,7 @@ class Pipe {
       fill(255, 0, 0);
     }
     rect(this.x, 0, this.w, this.top);
-    rect(this.x, height - this.bottom, this.w, this.bottom);
+    rect(this.x, this.bottom, this.w, height - this.bottom);
   }
 
   update() {
