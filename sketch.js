@@ -15,6 +15,7 @@ var bgX = 0;
 function preload() {
   pipeBodySprite = loadImage("./graphics/horn_body_filled.png");
   pipePeakSprite=loadImage("./graphics/horn_tip_filled.png");
+  pipePeakFlippedSprite=loadImage("./graphics/horn_tip_filled_flipped.png");
   birdSprite = loadImage("graphics/train.png");
   bgImg = loadImage("graphics/background.png");
     
