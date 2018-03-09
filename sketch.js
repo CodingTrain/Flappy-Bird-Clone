@@ -27,7 +27,9 @@ function setup() {
 
 function draw() {
   background(0);
-  // Draw our background image, then move it at half speed as the pipes
+  // Draw our background image, 
+  // then move it at half the speed of the pipes
+  // to create a parallax effect.
   image(bgImg, bgX, 0, bgImg.width, height);
   bgX -= speed*0.5;
 
