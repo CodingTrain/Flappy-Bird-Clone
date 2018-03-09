@@ -13,7 +13,7 @@ var  pipeSprite,pipBodySprite;
 
 function preload() {
 
-pipeBodySprite = loadImage("./img/pipe_body.png");
+pipeBodySprite = loadImage("./graphics/pipe_body.png");
   
 }
 
