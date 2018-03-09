@@ -1,20 +1,19 @@
-class Background{
+class Background {
 
-  constructor()
-  {
-    this.x1 = 0;
-    this.x2 = width;
-    this.speed=2;
-  }
+    constructor() {
+        this.x = 0;
+        this.speed = 2;
+    }
 
-  update() {
-      this.x1+=-this.speed;
-      this.x2+=-this.speed;
-      image(bgSprite,this.x1,0,width,height);
-      image(bgSprite,this.x2,0,width,height);
-      
-      if (this.x1<=-width)     this.x1=width;
-      if (this.x2<=-width)     this.x2=width;
-  }
+    update() {
+        image(bgSprite, this.x, 0, bgSprite.width, height);
+        this.x += -this.speed;
+        if (this.x <= -bgSprite.width + width) {
+            image(bgSprite, this.x + bgSprite.width, 0, bgSprite.width, height);
+            if (this.x <= -bgSprite.width) {
+                this.x = 0;
+            }
+        }
+    }
 
 }

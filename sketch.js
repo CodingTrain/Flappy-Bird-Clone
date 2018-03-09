@@ -16,7 +16,7 @@ function preload() {
 trainSprite = loadImage("./img/train.png");
 //pipeSprite = loadImage("./img/pipe.png");
 pipeBodySprite = loadImage("./img/pipe_body.png");
-bgSprite = loadImage("./img/bg.jpg");
+bgSprite = loadImage("./img/background.png");
     
 }
 
