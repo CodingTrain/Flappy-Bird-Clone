@@ -2,7 +2,7 @@ class Background {
 
     constructor() {
         this.x = 0;
-        this.speed = 2;
+        this.speed = 1.5;
     }
 
     update() {
