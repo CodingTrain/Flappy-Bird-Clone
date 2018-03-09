@@ -11,6 +11,7 @@ var birdIcon;
 var pipeBodySprite;
 var bgImg;
 var bgX = 0;
+var speed = 2;
 
 function preload() {
   pipeBodySprite = loadImage("./graphics/pipe_body.png");
@@ -26,9 +27,9 @@ function setup() {
 
 function draw() {
   background(0);
-  // Draw our background image, then move it at the same speed as the pipes
+  // Draw our background image, then move it at half speed as the pipes
   image(bgImg, bgX, 0, bgImg.width, height);
-  bgX -= pipes[0].speed;
+  bgX -= speed*0.5;
 
   // this handles the "infinite loop" by checking if the right
   // edge of the image would be on the screen, if it is draw a
