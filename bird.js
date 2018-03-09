@@ -1,32 +1,36 @@
-// Daniel Shiffman
-// http://codingtra.in
-// http://patreon.com/codingtrain
-// Code for: https://youtu.be/cXgA1d_E-jY&
+class Bird{
 
-function Bird() {
-  this.y = height / 2;
-  this.x = 64;
+  constructor()
+  {
+    this.y = height / 2;
+    this.x = 64;
+      
+    this.width=64;
+    this.height=64;
 
-  this.gravity = 0.6;
-  this.lift = -15;
-  this.velocity = 0;
-
-  this.show = function() {
-    fill(255);
-    ellipse(this.x, this.y, 32, 32);
+    this.gravity = 0.6;
+    this.lift = -15;
+    this.velocity = 0;
   }
 
-  this.up = function() {
-    this.velocity += this.lift;
+  show()
+  {
+    image(trainSprite,this.x,this.y,this.width,this.height);    
   }
 
-  this.update = function() {
+  up()
+  {
+      this.velocity += this.lift;
+  }
+
+  update()
+  {
     this.velocity += this.gravity;
     this.velocity *= 0.9;
     this.y += this.velocity;
 
-    if (this.y > height) {
-      this.y = height;
+    if (this.y+this.height > height) {
+      this.y = height-this.height;
       this.velocity = 0;
     }
 
@@ -34,7 +38,6 @@ function Bird() {
       this.y = 0;
       this.velocity = 0;
     }
-
   }
 
 }

@@ -6,22 +6,44 @@
 
 var bird;
 var pipes = [];
+var bg;
+var score=0;
+
+var trainSprite, pipeSprite,pipBodySprite,bgSprite;
+
+function preload() {
+    
+trainSprite = loadImage("./img/train.png");
+//pipeSprite = loadImage("./img/pipe.png");
+pipeBodySprite = loadImage("./img/pipe_body.png");
+bgSprite = loadImage("./img/bg.jpg");
+    
+}
 
 function setup() {
-  createCanvas(400, 600);
+  createCanvas(600, 600);
   bird = new Bird();
   pipes.push(new Pipe());
+  angleMode(DEGREES);
+  bg = new Background();
 }
+
 
 function draw() {
   background(0);
-
+  bg.update();
+    
   for (var i = pipes.length - 1; i >= 0; i--) {
     pipes[i].show();
     pipes[i].update();
 
+    if (pipes[i].pass(bird)) {
+      console.log("YAY");
+      score++;
+    }
+      
     if (pipes[i].hits(bird)) {
-      console.log("HIT");
+        gameover();
     }
 
 
@@ -40,7 +62,19 @@ function draw() {
   }
 
 
+  showScores();
+}
 
+function showScores() {
+    textSize(32);
+    text("score: "+score,1,32 );    
+}
+
+function gameover() {
+      console.log("HIT");
+      textSize(64);  
+      text('HIT',width/2,height/2);
+      score=0;
 }
 
 function keyPressed() {
