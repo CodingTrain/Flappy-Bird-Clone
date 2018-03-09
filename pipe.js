@@ -3,18 +3,18 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/cXgA1d_E-jY&
 
-function Pipe() {
-  this.spacing = random(40, height / 2);
-  this.top = random(height - this.spacing);
-  this.bottom = this.top + this.spacing;
-  
-  this.x = width;
-  this.w = 20;
-  this.speed = 2;
+class Pipe {
+  constructor() {
+    this.spacing = random(40, height / 2);
+    this.top = random(height - this.spacing);
+    this.bottom = this.top + this.spacing;
 
-  this.highlight = false;
+    this.x = width;
+    this.w = 20;
+    this.speed = 2;
+  }
 
-  this.hits = function(bird) {
+  hits(bird) {
     if (bird.y < this.top || bird.y > this.bottom) {
       if (bird.x > this.x && bird.x < this.x + this.w) {
         this.highlight = true;
@@ -25,7 +25,7 @@ function Pipe() {
     return false;
   }
 
-  this.show = function() {
+  show() {
     fill(255);
     if (this.highlight) {
       fill(255, 0, 0);
@@ -34,17 +34,15 @@ function Pipe() {
     rect(this.x, this.bottom, this.w, height - this.bottom);
   }
 
-  this.update = function() {
+  update() {
     this.x -= this.speed;
   }
 
-  this.offscreen = function() {
+  offscreen() {
     if (this.x < -this.w) {
       return true;
     } else {
       return false;
     }
   }
-
-
 }
