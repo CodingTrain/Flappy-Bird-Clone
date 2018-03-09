@@ -4,32 +4,30 @@
 // Code for: https://youtu.be/cXgA1d_E-jY&
 
 
+/* global createCanvas, background, frameCount, key */
+
+import Bird from "bird";
+import Pipe from "pipe";
+
 var bird;
 var pipes = [];
 
-function setup() {
+window.setup = function() {
   createCanvas(400, 600);
   bird = new Bird();
   pipes.push(new Pipe());
-}
+};
 
-function draw() {
+window.draw = function() {
   background(0);
 
   for (var i = pipes.length - 1; i >= 0; i--) {
     pipes[i].show();
     pipes[i].update();
 
-    if (pipes[i].hits(bird)) {
-      console.log("HIT");
-    }
-
-
     if (pipes[i].offscreen()) {
       pipes.splice(i, 1);
     }
-
-
   }
 
   bird.update();
@@ -38,14 +36,10 @@ function draw() {
   if (frameCount % 100 == 0) {
     pipes.push(new Pipe());
   }
+};
 
-
-
-}
-
-function keyPressed() {
-  if (key == ' ') {
+window.keyPressed = function() {
+  if (key == " ") {
     bird.up();
-    //console.log("SPACE");
   }
-}
+};
