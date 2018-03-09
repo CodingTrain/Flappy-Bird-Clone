@@ -13,7 +13,7 @@ class Bird {
     this.lift = -15;
     this.velocity = 0;
     
-    this.icon = loadImage("graphics/train.png");
+    this.icon = loadImage("graphics/circle.png");
     this.width = 64;
     this.height = 64;
   }

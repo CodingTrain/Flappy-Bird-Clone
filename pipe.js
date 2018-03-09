@@ -5,7 +5,7 @@
 
 class Pipe {
   constructor() {
-    this.spacing = random(40, height / 2);
+    this.spacing = random(150, height / 2);
     this.top = random(height - this.spacing);
     this.bottom = this.top + this.spacing;
 
@@ -27,7 +27,7 @@ class Pipe {
   }
 
   show() {
-    fill(255);
+    fill(250,95,176);
     if (this.highlight) {
       fill(255, 0, 0);
     }
