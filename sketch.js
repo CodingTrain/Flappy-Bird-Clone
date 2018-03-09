@@ -9,12 +9,16 @@ var score = 0;
 var maxScore = 0;
 var birdIcon;
 var pipeBodySprite;
+var pipePeakSprite;
+var pipePeakFlippedSprite;
 var bgImg;
 var bgX = 0;
 var speed = 2;
 
 function preload() {
-  pipeBodySprite = loadImage("./graphics/pipe_body.png");
+  pipeBodySprite = loadImage("./graphics/horn_body_filled.png");
+  pipePeakSprite = loadImage("./graphics/horn_tip_filled.png");
+  pipePeakFlippedSprite = loadImage("./graphics/horn_tip_filled_flipped.png");
   birdSprite = loadImage("graphics/train.png");
   bgImg = loadImage("graphics/background.png");
 }
@@ -66,7 +70,7 @@ function draw() {
   bird.update();
   bird.show();
 
-  if (frameCount % 100 == 0) {
+  if (frameCount % 150 == 0) {
     pipes.push(new Pipe());
   }
 
