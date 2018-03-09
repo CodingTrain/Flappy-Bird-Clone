@@ -18,8 +18,8 @@ class Pipe {
   }
 
   hits(bird) {
-    if (bird.y < this.top || bird.y > height - this.bottom) {
-      if (bird.x > this.x && bird.x < this.x + this.w) {
+    if (bird.y < this.top || bird.y+bird.height > height - this.bottom) {
+      if (bird.x < this.x && bird.x+bird.width > this.x + this.w) {
         this.highlight = true;
         this.passed=true;
         return true;
