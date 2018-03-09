@@ -39,38 +39,28 @@ class Pipe {
     return false;
   }
 
-  //These two functions allows us to draw image without stretching
-  drawBottom() {
+  drawHalf() {
     let howManyNedeed = 0;
-
-    // 5/4 - proportion of image
+    let peakRatio = pipePeakSprite.height / pipePeakSprite.width;
+    let bodyRatio = pipeBodySprite.height / pipeBodySprite.width;
     //this way we calculate, how many tubes we can fit without stretching
-    //+1 is just to be sure
-    howManyNedeed = (this.bottom * (5 / 4) / this.w) + 1;
-    for (let i = 1; i < howManyNedeed; ++i) {
-        image(pipeBodySprite, this.x, this.bottom + i * this.w * 5 / 4, this.w, this.w * 5 / 4);
-    }
-    //and now peak
-    image(pipePeakSprite, this.x, this.bottom, this.w, this.w * 5 / 4);
-  }
-
-  drawTop() {
-    let howManyNedeed = 0;
-
-    // 5/4 - proportion of image
-    //this way we calculate, how many tubes we can fit without stretching
-    howManyNedeed = Math.round(this.top * (5 / 4) / this.w);
+    howManyNedeed = Math.round(height / (this.w * bodyRatio));
     //this <= and start from 1 is just my HACK xD But it's working
-    for (let i = 2; i <= howManyNedeed; ++i) {
-        image(pipeBodySprite, this.x, this.top - i * this.w * 5 / 4, this.w, this.w * 5 / 4);
+    for (let i = 0; i < howManyNedeed; ++i) {
+      let offset = this.w * (i * bodyRatio + peakRatio);
+      image(pipeBodySprite, -this.w / 2, offset, this.w, this.w * bodyRatio);
     }
-    //i dont want to mess with translations and rotations, so I've made another peak
-    image(pipePeakFlippedSprite, this.x, this.top - this.w * 5 / 4, this.w, this.w * 5 / 4);
+    image(pipePeakSprite, -this.w / 2, 0, this.w, this.w * peakRatio);
   }
 
   show() {
-    this.drawTop();
-    this.drawBottom();
+    push();
+    translate(this.x + this.w / 2, this.bottom);
+    this.drawHalf();
+    translate(0, -this.spacing);
+    rotate(PI);
+    this.drawHalf();
+    pop();
   }
 
   update() {
