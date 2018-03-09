@@ -1,7 +1,7 @@
 // Daniel Shiffman
 // http://codingtra.in
 // http://patreon.com/codingtrain
-// Code for: https://youtu.be/cXgA1d_E-jY&
+// Code for: https://youtu.be/cXgA1d_E-jY
 
 class Pipe {
   constructor() {
