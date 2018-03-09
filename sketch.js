@@ -6,15 +6,13 @@
 
 var bird;
 var pipes = [];
-var bg;
 var score=0;
 var maxScore=0;
 
-var trainSprite, pipeSprite,pipBodySprite;
+var  pipeSprite,pipBodySprite;
 
 function preload() {
     
-trainSprite = loadImage("./img/train.png");
 //pipeSprite = loadImage("./img/pipe.png");
 pipeBodySprite = loadImage("./img/pipe_body.png");
 
