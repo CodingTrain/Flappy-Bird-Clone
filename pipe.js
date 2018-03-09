@@ -10,7 +10,7 @@ class Pipe {
     this.bottom = this.top + this.spacing;
 
     this.x = width;
-    this.w = 20;
+    this.w = 80;
     this.speed = 2;
 
     this.passed = false;
