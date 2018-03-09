@@ -4,9 +4,19 @@
 // Code for: https://youtu.be/cXgA1d_E-jY&
 
 function Pipe() {
-  this.spacing = random(40, height / 2);
-  this.top = random(height - this.spacing);
-  this.bottom = this.top + this.spacing;
+  // Generate the spacing amount we want first, then we can
+  // define the top and bottom from that. To begin with we
+  // want it centered so top and bottom are based off of eachother
+  this.spacing = random(100, height / 2);
+  this.top = (height - this.spacing) / 2;
+  this.bottom = height - this.top;
+
+  // Then we can create an adjustment amount to shift the gap
+  // either up or down the screen, but never off as we use 
+  // spacing / 2 which we know will always leave us SOME pipe showing
+  this.adjustment = random(-(this.spacing / 2), this.spacing / 2);
+  this.top += this.adjustment;
+  this.bottom += this.adjustment;
   
   this.x = width;
   this.w = 20;
@@ -15,7 +25,9 @@ function Pipe() {
   this.highlight = false;
 
   this.hits = function(bird) {
-    if (bird.y < this.top || bird.y > height - this.bottom) {
+    // Because this.bottom is now exactly where the pipe starts
+    // we use it directly not needing height - 
+    if (bird.y < this.top || bird.y > this.bottom) {
       if (bird.x > this.x && bird.x < this.x + this.w) {
         this.highlight = true;
         return true;
@@ -31,7 +43,7 @@ function Pipe() {
       fill(255, 0, 0);
     }
     rect(this.x, 0, this.w, this.top);
-    rect(this.x, height - this.bottom, this.w, this.bottom);
+    rect(this.x, this.bottom, this.w, height);
   }
 
   this.update = function() {
