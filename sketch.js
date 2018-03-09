@@ -8,7 +8,7 @@ var pipes = [];
 var score = 0;
 var maxScore = 0;
 var birdIcon;
-var pipeBodySprite, pipePeakSprite;
+var pipeBodySprite, pipePeakSprite,pipePeakFlippedSprite;
 var bgImg;
 var bgX = 0;
 
