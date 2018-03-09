@@ -43,6 +43,7 @@ function Pipe() {
       fill(255, 0, 0);
     }
     rect(this.x, 0, this.w, this.top);
+    // start at "bottom" and draw to height
     rect(this.x, this.bottom, this.w, height);
   }
 
