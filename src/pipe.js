@@ -3,7 +3,10 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/cXgA1d_E-jY&
 
-class Pipe {
+
+/* global random, height, width, fill, rect */
+
+export default class Pipe {
   constructor() {
     this.spacing = random(40, height / 2);
     this.top = random(height - this.spacing);

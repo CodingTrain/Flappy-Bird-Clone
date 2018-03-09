@@ -1,0 +1,25 @@
+{
+  "name": "Flappy-Bird-Clone",
+  "version": "1.0.0",
+  "description": "Clone of Flappy Bird written in P5.js",
+  "main": "./src/sketch.js",
+  "repository": "git@github.com/CodingTrain/Flappy-Bird-Clone",
+  "author": "Daniel Shiffman <daniel.shiffman@gmail.com>",
+  "private": false,
+  "dependencies": {
+    "p5": "^0.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "jest": "^22.4.2",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.10",
+    "webpack-dev-server": "^3.1.0"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --mode=development",
+    "build": "webpack --config webpack.config.js --mode=production",
+    "lint": "eslint src",
+    "test": "jest unit"
+  }
+}

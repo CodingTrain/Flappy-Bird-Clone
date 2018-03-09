@@ -3,7 +3,10 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/cXgA1d_E-jY&
 
-class Bird {
+
+/* global height, fill, ellipse */
+
+export default class Bird {
   constructor() {
     this.y = height/2;
     this.x = 64;
