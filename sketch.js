@@ -26,7 +26,6 @@ function setup() {
   createCanvas(600, 600);
   bird = new Bird();
   pipes.push(new Pipe());
-  bg = new Background();
 }
 
 function draw() {
