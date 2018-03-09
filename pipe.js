@@ -11,7 +11,7 @@ class Pipe {
 
     this.x = width;
     this.w = 20;
-    this.speed = speed;
+    this.speed = 2;
 
     this.passed = false;
     this.highlight = false;
