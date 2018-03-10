@@ -13,18 +13,24 @@ var pipeBodySprite;
 var pipePeakSprite;
 var bgImg;
 var bgX = 0;
+var numbers;
+var numberw;
+var numberh;
 
 function preload() {
   pipeBodySprite = loadImage("./graphics/pipe_body.png");
   pipePeakSprite = loadImage("./graphics/pipe_body.png");
   birdSprite = loadImage("graphics/train.png");
   bgImg = loadImage("graphics/background.png");
+  numbers = loadImage("graphics/numbers.png");
 }
 
 function setup() {
   createCanvas(600, 600);
   bird = new Bird();
   pipes.push(new Pipe());
+  numberw = numbers.width/10;
+  numberh = numbers.height;
 }
 
 function draw() {
@@ -71,12 +77,22 @@ function draw() {
   }
 
   showScores();
+  showNumber(score,width/2,10);
 }
 
 function showScores() {
   textSize(32);
   text("score: " + score, 1, 32);
   text("record: " + maxScore, 1, 64);
+}
+
+function showNumber(n,x,y){
+  var nString = n.toString();
+  var finalX = x-((numberw*nString.length)/2);
+  for (let i = 0; i < nString.length; i++){
+    let offset = int(nString.charAt(i))*numberw;
+    image(numbers,finalX+(i*numberw),y,numberw,numberh,offset,0,numberw,numberh);
+  }
 }
 
 function gameover() {
