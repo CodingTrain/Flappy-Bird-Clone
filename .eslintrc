@@ -44,10 +44,4 @@
     "no-empty": ["error", { "allowEmptyCatch": true }],
     "no-console": "off"
   },
-  "overrides": [
-    {
-      "files": "*.js",
-      "excludedFiles": "p5*.js"
-    }
-  ]
 }

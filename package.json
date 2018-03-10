@@ -35,5 +35,6 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "prettier": "^1.11.1"
-  }
+  },
+  "eslintIgnore": [ "libraries/*" ]
 }
