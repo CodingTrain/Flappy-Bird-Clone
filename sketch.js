@@ -59,7 +59,6 @@ function draw() {
       pipes.splice(i, 1);
     }
       
-    //keep this the last check for pipes, as if you change its place, code is gonna break. It's made that way to avoid rewriting a lot of stuff
     if (pipes[i].hits(bird)) {
       gameover();
     }
