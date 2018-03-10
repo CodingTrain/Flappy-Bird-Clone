@@ -5,7 +5,7 @@
 
 var bird;
 var pipes = [];
-var parallax = 0.8;
+var parallax = 1.6;
 var score = 0;
 var maxScore = 0;
 var birdIcon;
@@ -31,7 +31,7 @@ function draw() {
   background(0);
   // Draw our background image, then move it at the same speed as the pipes
   image(bgImg, bgX, 0, bgImg.width, height);
-  bgX -= pipes[0].speed * parallax;
+  bgX -= parallax;
 
   // this handles the "infinite loop" by checking if the right
   // edge of the image would be on the screen, if it is draw a
@@ -54,12 +54,13 @@ function draw() {
       score++;
     }
 
-    if (pipes[i].hits(bird)) {
-      gameover();
-    }
-
     if (pipes[i].offscreen()) {
       pipes.splice(i, 1);
+    }
+      
+    //keep this the last check for pipes, as if you change its place, code is gonna break. It's made that way to avoid rewriting a lot of stuff
+    if (pipes[i].hits(bird)) {
+      gameover();
     }
   }
 
@@ -79,13 +80,22 @@ function showScores() {
   text("record: " + maxScore, 1, 64);
 }
 
+function restart() {
+  score = 0;
+  //we start new game. to let this happen, we need to drop pipes to nothing
+  pipes=[];
+  //no memory leak here. JS engine will clear memory as nothing is refered to old Bird object.
+  bird = new Bird();
+}
+
 function gameover() {
   console.log("HIT");
   textSize(64);
   text("HIT", width / 2, height / 2);
   maxScore = max(score, maxScore);
-  score = 0;
+  restart();
 }
+
 function keyPressed() {
   if (key == " ") {
     bird.up();
