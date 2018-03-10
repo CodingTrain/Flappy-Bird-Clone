@@ -3,6 +3,9 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/cXgA1d_E-jY
 
+/* global birdSprite */
+
+// eslint-disable-next-line no-unused-vars
 class Bird {
   constructor() {
     this.y = height / 2;
@@ -19,7 +22,13 @@ class Bird {
 
   show() {
     // draw the icon CENTERED around the X and Y coords of the bird object
-    image(this.icon, this.x - (this.width / 2), this.y - (this.height / 2), this.width, this.height);
+    image(
+      this.icon,
+      this.x - this.width / 2,
+      this.y - this.height / 2,
+      this.width,
+      this.height
+    );
   }
 
   up() {

@@ -3,6 +3,9 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/cXgA1d_E-jY
 
+/* global pipePeakSprite, pipeBodySprite */
+
+// eslint-disable-next-line no-unused-vars
 class Pipe {
   constructor() {
     this.spacing = 125;
@@ -18,9 +21,15 @@ class Pipe {
   }
 
   hits(bird) {
-    if (bird.y - (bird.height / 2) < this.top || bird.y + (bird.height / 2) > this.bottom) {
+    if (
+      bird.y - bird.height / 2 < this.top ||
+      bird.y + bird.height / 2 > this.bottom
+    ) {
       //if this.w is huge, then we need different collision model
-      if (bird.x + (bird.width / 2) > this.x  && bird.x - (bird.width / 2) < this.x + this.w) {
+      if (
+        bird.x + bird.width / 2 > this.x &&
+        bird.x - bird.width / 2 < this.x + this.w
+      ) {
         this.highlight = true;
         this.passed = true;
         return true;
