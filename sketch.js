@@ -15,7 +15,7 @@ var bgX = 0;
 
 function preload() {
   pipeBodySprite = loadImage("./graphics/pipe_body.png");
-  pipePeakSprite = loadImage("./graphics/pipe_body.png");
+  pipePeakSprite = loadImage("./graphics/pipe_top.png");
   birdSprite = loadImage("graphics/train.png");
   bgImg = loadImage("graphics/background.png");
 }
