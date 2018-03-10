@@ -86,6 +86,8 @@ function restart() {
   pipes=[];
   //no memory leak here. JS engine will clear memory as nothing is refered to old Bird object.
   bird = new Bird();
+  //to make it real restart, we reset frameCount, as out pipe creatin relies on this
+  frameCount=1;
 }
 
 function gameover() {
