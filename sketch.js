@@ -5,7 +5,7 @@
 
 var bird;
 var pipes = [];
-var parallax = 1.6;
+var parallax = 0.8;
 var score = 0;
 var maxScore = 0;
 var birdIcon;
@@ -13,6 +13,7 @@ var pipeBodySprite;
 var pipePeakSprite;
 var bgImg;
 var bgX = 0;
+var gameoverFrame=0;
 
 function preload() {
   pipeBodySprite = loadImage("./graphics/pipe_body.png");
@@ -31,7 +32,7 @@ function draw() {
   background(0);
   // Draw our background image, then move it at the same speed as the pipes
   image(bgImg, bgX, 0, bgImg.width, height);
-  bgX -= parallax;
+  bgX -= pipes[0].speed * parallax;
 
   // this handles the "infinite loop" by checking if the right
   // edge of the image would be on the screen, if it is draw a
@@ -67,7 +68,7 @@ function draw() {
   bird.update();
   bird.show();
 
-  if (frameCount % 150 == 0) {
+  if ((frameCount-gameoverFrame) % 150 == 0) {
     pipes.push(new Pipe());
   }
 
@@ -86,8 +87,11 @@ function restart() {
   pipes=[];
   //no memory leak here. JS engine will clear memory as nothing is refered to old Bird object.
   bird = new Bird();
-  //to make it real restart, we reset frameCount, as out pipe creatin relies on this
-  frameCount=1;
+  //each time we loose we reset our pipe push timer
+  gameoverFrame=frameCount-1;
+  //we need to push pipe as it's done in setup
+  pipes.push(new Pipe());
+  //It works like restart because when you run setup, it's frame 0. Then frame 1 goes when it goes to draw, so it should be fine (right? frameCount increases at the end of update?)
 }
 
 function gameover() {
