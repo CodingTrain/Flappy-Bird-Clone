@@ -13,6 +13,7 @@ var pipeBodySprite;
 var pipePeakSprite;
 var bgImg;
 var bgX = 0;
+var gameoverFrame=0;
 
 function preload() {
   pipeBodySprite = loadImage("./graphics/pipe_body.png");
@@ -54,19 +55,19 @@ function draw() {
       score++;
     }
 
-    if (pipes[i].hits(bird)) {
-      gameover();
-    }
-
     if (pipes[i].offscreen()) {
       pipes.splice(i, 1);
+    }
+      
+    if (pipes[i].hits(bird)) {
+      gameover();
     }
   }
 
   bird.update();
   bird.show();
 
-  if (frameCount % 150 == 0) {
+  if ((frameCount-gameoverFrame) % 150 == 0) {
     pipes.push(new Pipe());
   }
 
@@ -79,13 +80,27 @@ function showScores() {
   text("record: " + maxScore, 1, 64);
 }
 
+function restart() {
+  score = 0;
+  //we start new game. to let this happen, we need to drop pipes to nothing
+  pipes=[];
+  //no memory leak here. JS engine will clear memory as nothing is refered to old Bird object.
+  bird = new Bird();
+  //each time we loose we reset our pipe push timer
+  gameoverFrame=frameCount-1;
+  //we need to push pipe as it's done in setup
+  pipes.push(new Pipe());
+  //It works like restart because when you run setup, it's frame 0. Then frame 1 goes when it goes to draw, so it should be fine (right? frameCount increases at the end of update?)
+}
+
 function gameover() {
   console.log("HIT");
   textSize(64);
   text("HIT", width / 2, height / 2);
   maxScore = max(score, maxScore);
-  score = 0;
+  restart();
 }
+
 function keyPressed() {
   if (key == " ") {
     bird.up();
