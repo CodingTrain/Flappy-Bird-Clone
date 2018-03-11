@@ -4,8 +4,8 @@
 // Code for: https://youtu.be/cXgA1d_E-jY
 
 /* global pipePeakSprite, pipeBodySprite */
+/* exported Pipe */
 
-// eslint-disable-next-line no-unused-vars
 class Pipe {
   constructor() {
     this.spacing = 125;

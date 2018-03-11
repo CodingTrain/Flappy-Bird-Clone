@@ -4,8 +4,8 @@
 // Code for: https://youtu.be/cXgA1d_E-jY
 
 /* global birdSprite */
+/* exported Bird */
 
-// eslint-disable-next-line no-unused-vars
 class Bird {
   constructor() {
     this.y = height / 2;

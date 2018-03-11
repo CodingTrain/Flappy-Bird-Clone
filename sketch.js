@@ -4,21 +4,21 @@
 // Code for: https://youtu.be/cXgA1d_E-jY
 
 /* global Bird, Pipe */
+/* exported birdSprite, pipeBodySprite,
+ * pipePeakSprite, preload, setup, draw,
+ * keyPressed */
 
 var bird;
 var pipes = [];
 var parallax = 0.8;
 var score = 0;
 var maxScore = 0;
-/* eslint-disable no-unused-vars */
 var birdSprite;
 var pipeBodySprite;
 var pipePeakSprite;
-/* eslint-enable no-unused-vars */
 var bgImg;
 var bgX = 0;
 
-// eslint-disable-next-line no-unused-vars
 function preload() {
   pipeBodySprite = loadImage('./graphics/pipe_body.png');
   pipePeakSprite = loadImage('./graphics/pipe_body.png');
@@ -26,14 +26,12 @@ function preload() {
   bgImg = loadImage('graphics/background.png');
 }
 
-// eslint-disable-next-line no-unused-vars
 function setup() {
   createCanvas(600, 600);
   bird = new Bird();
   pipes.push(new Pipe());
 }
 
-// eslint-disable-next-line no-unused-vars
 function draw() {
   background(0);
   // Draw our background image, then move it at the same speed as the pipes
@@ -79,7 +77,6 @@ function draw() {
   showScores();
 }
 
-// eslint-disable-next-line no-unused-vars
 function showScores() {
   textSize(32);
   text('score: ' + score, 1, 32);
@@ -93,7 +90,6 @@ function gameover() {
   score = 0;
 }
 
-// eslint-disable-next-line no-unused-vars
 function keyPressed() {
   if (key === ' ') {
     bird.up();
