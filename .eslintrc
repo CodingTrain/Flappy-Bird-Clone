@@ -16,8 +16,7 @@
   ],
   "rules": {
     "arrow-parens": [
-      "error",
-      "always"
+      "error"
     ],
     "brace-style": [
       "error",
