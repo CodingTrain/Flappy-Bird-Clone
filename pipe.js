@@ -68,6 +68,6 @@ class Pipe {
   }
 
   offscreen() {
-    return this.x < -this.w;
+    return (this.x < -this.w);
   }
 }
