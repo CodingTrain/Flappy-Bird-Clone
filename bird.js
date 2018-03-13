@@ -3,7 +3,7 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/cXgA1d_E-jY
 
-/* global birdSprite */
+// Class is exported (eslint flag)
 /* exported Bird */
 
 class Bird {

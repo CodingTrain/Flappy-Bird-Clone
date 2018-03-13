@@ -3,10 +3,11 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/cXgA1d_E-jY
 
-/* global Bird, Pipe */
-/* exported birdSprite, pipeBodySprite,
- * pipePeakSprite, preload, setup, draw,
- * keyPressed */
+// P5 exported functions (eslint flags)
+/* exported preload, setup, draw, keyPressed */
+
+// Exported sprites (eslint flags)
+/* exported birdSprite, pipeBodySprite, pipePeakSprite */
 
 var bird;
 var pipes = [];

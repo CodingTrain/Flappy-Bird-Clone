@@ -7,7 +7,12 @@
     "p5": true,
     "assert": true,
     "expect": true,
-    "sinon": true
+    "sinon": true,
+    "birdSprite": true,
+    "pipePeakSprite": true,
+    "pipeBodySprite": true,
+    "Bird": true,
+    "Pipe": true,
   },
   "extends": [
     "eslint:recommended",

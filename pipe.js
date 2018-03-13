@@ -3,7 +3,7 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/cXgA1d_E-jY
 
-/* global pipePeakSprite, pipeBodySprite */
+// Pipe is exported (eslint flags)
 /* exported Pipe */
 
 class Pipe {
