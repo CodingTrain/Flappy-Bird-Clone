@@ -4,7 +4,7 @@
 // Code for: https://youtu.be/cXgA1d_E-jY
 
 var bird;
-var pipes = [];
+var pipes;
 var parallax = 0.8;
 var score = 0;
 var maxScore = 0;
@@ -12,7 +12,8 @@ var birdIcon;
 var pipeBodySprite;
 var pipePeakSprite;
 var bgImg;
-var bgX = 0;
+var bgX;
+var gameisover = false;
 
 function preload() {
   pipeBodySprite = loadImage("./graphics/pipe_body.png");
@@ -23,8 +24,7 @@ function preload() {
 
 function setup() {
   createCanvas(600, 600);
-  bird = new Bird();
-  pipes.push(new Pipe());
+  reset();
 }
 
 function draw() {
@@ -71,6 +71,10 @@ function draw() {
   }
 
   showScores();
+  
+  if (gameisover) {
+    noLoop();
+  }
 }
 
 function showScores() {
@@ -85,7 +89,16 @@ function gameover() {
   text("HIT", width / 2, height / 2);
   maxScore = max(score, maxScore);
   score = 0;
+  gameisover = true;
 }
+
+function reset() {
+  bgX = 0;
+  pipes = [];
+  bird = new Bird();
+  pipes.push(new Pipe());
+}
+
 function keyPressed() {
   if (key == " ") {
     bird.up();
