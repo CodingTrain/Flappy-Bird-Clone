@@ -13,7 +13,7 @@ var pipeBodySprite;
 var pipePeakSprite;
 var bgImg;
 var bgX;
-var gameisover = false;
+var gameoverFrame=0;
 
 function preload() {
   pipeBodySprite = loadImage("./graphics/pipe_body.png");
@@ -66,15 +66,12 @@ function draw() {
   bird.update();
   bird.show();
 
-  if (frameCount % 150 == 0) {
+  if ((frameCount-gameoverFrame) % 150 == 0) {
     pipes.push(new Pipe());
   }
 
   showScores();
   
-  if (gameisover) {
-    noLoop();
-  }
 }
 
 function showScores() {
@@ -89,7 +86,7 @@ function gameover() {
   text("HIT", width / 2, height / 2);
   maxScore = max(score, maxScore);
   score = 0;
-  gameisover = true;
+  reset();
 }
 
 function reset() {
@@ -97,6 +94,7 @@ function reset() {
   pipes = [];
   bird = new Bird();
   pipes.push(new Pipe());
+  gameoverFrame=frameCount-1;
 }
 
 function keyPressed() {
