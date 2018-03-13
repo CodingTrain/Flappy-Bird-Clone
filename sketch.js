@@ -46,8 +46,8 @@ function draw() {
   }
 
   for (var i = pipes.length - 1; i >= 0; i--) {
-    pipes[i].show();
     pipes[i].update();
+    pipes[i].show();
 
     if (pipes[i].pass(bird)) {
       console.log("YAY");
