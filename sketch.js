@@ -3,12 +3,18 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/cXgA1d_E-jY
 
+// P5 exported functions (eslint flags)
+/* exported preload, setup, draw, keyPressed */
+
+// Exported sprites (eslint flags)
+/* exported birdSprite, pipeBodySprite, pipePeakSprite */
+
 var bird;
 var pipes;
 var parallax = 0.8;
 var score = 0;
 var maxScore = 0;
-var birdIcon;
+var birdSprite;
 var pipeBodySprite;
 var pipePeakSprite;
 var bgImg;
@@ -16,10 +22,10 @@ var bgX;
 var gameisover = false;
 
 function preload() {
-  pipeBodySprite = loadImage("./graphics/pipe_body.png");
-  pipePeakSprite = loadImage("./graphics/pipe_body.png");
-  birdSprite = loadImage("graphics/train.png");
-  bgImg = loadImage("graphics/background.png");
+  pipeBodySprite = loadImage('./graphics/pipe_body.png');
+  pipePeakSprite = loadImage('./graphics/pipe_body.png');
+  birdSprite = loadImage('graphics/train.png');
+  bgImg = loadImage('graphics/background.png');
 }
 
 function setup() {
@@ -38,9 +44,9 @@ function draw() {
   // second copy of the image right next to it
   // once the second image gets to the 0 point, we can reset bgX to
   // 0 and go back to drawing just one image.
-  if(bgX <= -bgImg.width + width){
+  if (bgX <= -bgImg.width + width) {
     image(bgImg, bgX + bgImg.width, 0, bgImg.width, height);
-    if(bgX <= -bgImg.width){
+    if (bgX <= -bgImg.width) {
       bgX = 0;
     }
   }
@@ -50,7 +56,6 @@ function draw() {
     pipes[i].show();
 
     if (pipes[i].pass(bird)) {
-      console.log("YAY");
       score++;
     }
 
@@ -66,7 +71,7 @@ function draw() {
   bird.update();
   bird.show();
 
-  if (frameCount % 150 == 0) {
+  if (frameCount % 150 === 0) {
     pipes.push(new Pipe());
   }
 
@@ -79,14 +84,13 @@ function draw() {
 
 function showScores() {
   textSize(32);
-  text("score: " + score, 1, 32);
-  text("record: " + maxScore, 1, 64);
+  text('score: ' + score, 1, 32);
+  text('record: ' + maxScore, 1, 64);
 }
 
 function gameover() {
-  console.log("HIT");
   textSize(64);
-  text("HIT", width / 2, height / 2);
+  text('HIT', width / 2, height / 2);
   maxScore = max(score, maxScore);
   score = 0;
   gameisover = true;
@@ -100,7 +104,7 @@ function reset() {
 }
 
 function keyPressed() {
-  if (key == " ") {
+  if (key === ' ') {
     bird.up();
   }
 }
