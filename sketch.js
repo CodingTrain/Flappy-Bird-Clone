@@ -80,7 +80,7 @@ function draw() {
   }
 
   showScores();
-k  
+
   // touches is an list that contains the positions of all
   // current touch points positions and IDs
   // here we check if touches' length is bigger than one
