@@ -21,6 +21,10 @@ var bgImg;
 var bgX;
 var gameisover = false;
 
+var touched = false;
+var prevTouched = touched;
+
+
 function preload() {
   pipeBodySprite = loadImage('./graphics/pipe_body.png');
   pipePeakSprite = loadImage('./graphics/pipe_body.png');
@@ -76,6 +80,22 @@ function draw() {
   }
 
   showScores();
+
+  // touches is an list that contains the positions of all
+  // current touch points positions and IDs
+  // here we check if touches' length is bigger than one
+  // and set it to the touched var
+  touched = (touches.length > 0);
+
+  // if user has touched then make bird jump
+  // also checks if not touched before
+  if (touched && !prevTouched){
+    bird.up();
+  }
+
+  // updates prevTouched
+  prevTouched = touched;
+
   
   if (gameisover) {
     noLoop();
