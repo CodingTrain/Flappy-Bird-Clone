@@ -21,6 +21,8 @@ var bgImg;
 var bgX;
 var gameoverFrame=0;
 
+var gameoverTime = 2000; //time in MS that GAMEOVER will be shown for
+
 var touched = false;
 var prevTouched = touched;
 
@@ -107,18 +109,25 @@ function showScores() {
 
 function gameover() {
   textSize(64);
-  text('HIT', width / 2, height / 2);
+    
+  textAlign(CENTER,CENTER);
+  text('GAMEOVER', width / 2, height / 2);
+  textAlign(LEFT,BASELINE);
+    
   maxScore = max(score, maxScore);
-  score = 0;
-  reset();
+
+  noLoop();
+  setTimeout(reset,gameoverTime);
 }
 
 function reset() {
+  score = 0;
   bgX = 0;
   pipes = [];
   bird = new Bird();
   pipes.push(new Pipe());
   gameoverFrame=frameCount-1;
+  loop();
 }
 
 function keyPressed() {
