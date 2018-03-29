@@ -71,10 +71,6 @@ class Pipe {
   }
 
   offscreen() {
-    if (this.x < -this.w) {
-      return true;
-    } else {
-      return false;
-    }
+    return (this.x < -this.w);
   }
 }

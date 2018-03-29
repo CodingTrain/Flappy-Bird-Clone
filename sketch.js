@@ -19,7 +19,8 @@ var pipeBodySprite;
 var pipePeakSprite;
 var bgImg;
 var bgX;
-var gameisover = false;
+var gameoverFrame=0;
+var isOver = false;
 
 var touched = false;
 var prevTouched = touched;
@@ -75,7 +76,7 @@ function draw() {
   bird.update();
   bird.show();
 
-  if (frameCount % 150 === 0) {
+  if ((frameCount-gameoverFrame) % 150 == 0) {
     pipes.push(new Pipe());
   }
 
@@ -97,9 +98,6 @@ function draw() {
   prevTouched = touched;
 
   
-  if (gameisover) {
-    noLoop();
-  }
 }
 
 function showScores() {
@@ -110,21 +108,32 @@ function showScores() {
 
 function gameover() {
   textSize(64);
-  text('HIT', width / 2, height / 2);
+  textAlign(CENTER,CENTER);
+  text('GAMEOVER', width / 2, height / 2);
+  textAlign(LEFT,BASELINE);
   maxScore = max(score, maxScore);
-  score = 0;
-  gameisover = true;
+  isOver=true;
+  noLoop();
 }
 
 function reset() {
+  isOver=false;
+  score = 0;
   bgX = 0;
   pipes = [];
   bird = new Bird();
   pipes.push(new Pipe());
+  gameoverFrame=frameCount-1;
+  loop();
 }
 
 function keyPressed() {
   if (key === ' ') {
     bird.up();
+    if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
   }
+}
+
+function touchStarted() {
+    if (isOver) reset();
 }
