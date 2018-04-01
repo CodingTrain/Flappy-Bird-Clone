@@ -12,7 +12,7 @@ class Bird {
     this.x = 64;
 
     this.gravity = 0.6;
-    this.lift = -15;
+    this.delay = 0;
     this.velocity = 0;
 
     this.icon = birdSprite;
@@ -26,12 +26,17 @@ class Bird {
   }
 
   up() {
-    this.velocity += this.lift;
+    if (this.delay > 0)
+        this.delay--;
+
+    if (this.delay <= 0) {
+        this.velocity = -7;
+        this.delay = 1;
+    }
   }
 
   update() {
     this.velocity += this.gravity;
-    this.velocity *= 0.9;
     this.y += this.velocity;
 
     if (this.y >= height - this.height / 2) {
