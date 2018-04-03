@@ -12,7 +12,7 @@ class Bird {
     this.x = 64;
 
     this.gravity = 0.6;
-    this.delay = false;
+    this.lift = -7;
     this.velocity = 0;
 
     this.icon = birdSprite;
@@ -26,13 +26,7 @@ class Bird {
   }
 
   up() {
-    if (this.delay)
-        this.delay = false;
-
-    if (!this.delay) {
-        this.velocity = -7;
-        this.delay = true;
-    }
+        this.velocity = this.lift;
   }
 
   update() {
