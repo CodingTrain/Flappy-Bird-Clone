@@ -21,9 +21,11 @@ class Pipe {
   }
 
   hits(bird) {
-    if (bird.y - bird.height / 2 < this.top || bird.y + bird.height / 2 > this.bottom) {
+    let halfBirdHeight = bird.height / 2;
+    let halfBirdwidth = bird.width / 2;
+    if (bird.y - halfBirdHeight < this.top || bird.y + halfBirdHeight > this.bottom) {
       //if this.w is huge, then we need different collision model
-      if (bird.x + bird.width / 2 > this.x && bird.x - bird.width / 2 < this.x + this.w) {
+      if (bird.x + halfBirdwidth > this.x && bird.x - halfBirdwidth < this.x + this.w) {
         this.highlight = true;
         this.passed = true;
         return true;
