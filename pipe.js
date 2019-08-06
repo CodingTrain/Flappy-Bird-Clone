@@ -8,7 +8,7 @@
 
 class Pipe {
   constructor() {
-    this.spacing = 125;
+    this.spacing = 200;//125;
     this.top = random(height / 6, 3 / 4 * height);
     this.bottom = this.top + this.spacing;
 
@@ -66,6 +66,10 @@ class Pipe {
     rotate(PI);
     this.drawHalf();
     pop();
+  }
+
+  centerY(){
+    return this.bottom - (this.spacing / 2);
   }
 
   update() {
