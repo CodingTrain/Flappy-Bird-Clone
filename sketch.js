@@ -119,8 +119,15 @@ function draw() {
     pipeCenterYVals.push(0);
   }
 
+  drawBirdLine();
+
   // updates prevTouched
   prevTouched = touched;
+}
+
+function drawBirdLine(){
+  console.log(frameCount)
+
 }
 
 function showScores() {
@@ -136,17 +143,16 @@ function gameover() {
   textAlign(LEFT, BASELINE);
   maxScore = max(score, maxScore);
   
-
   console.log("game over");
 
   //save the data to a csv
-  var csvOutput = "data:text/csv;charset=utf-8," + "birdY, birdJump, birdVelocity, pipeY\r\n";
+  var csvOutput = "data:text/csv;charset=utf-8," + "birdY,birdJump,birdVelocity,pipeY\r\n";
 
   for(var i = 0;i<birdYVals.length;i++){
     csvOutput += birdYVals[i]+",";
     csvOutput += birdJumpVals[i]+",";
     csvOutput += birdVeloctiyVals[i]+",";
-    csvOutput += pipeCenterYVals[i]+",";
+    csvOutput += pipeCenterYVals[i];
 
     csvOutput += "\r\n";
   }
@@ -157,8 +163,7 @@ function gameover() {
   link.setAttribute("download", "flappyBird.csv");
   document.body.appendChild(link); // Required for FF
   
-  link.click(); // This will download the data file named "my_data.csv".
-
+  link.click();
 }
 
 function reset() {

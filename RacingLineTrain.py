@@ -14,64 +14,6 @@ from sklearn.model_selection import train_test_split
 import tensorflow.python.util.deprecation as deprecation
 deprecation._PRINT_DEPRECATION_WARNINGS = False
 
-from tensorflow.python.framework import ops
-from tensorflow.python.ops import math_ops
-from tensorflow.python.keras import backend as K
-
-
-def max_abs_err(y_true, y_pred):
-
-    #runs out of gpu memory on larger bacth sizes
-
-    y_pred = ops.convert_to_tensor(y_pred)
-    y_true = math_ops.cast(y_true, y_pred.dtype)
-
-    err = y_pred - y_true
-    abs_err = math_ops.abs(err)
-
-    return K.max(abs_err, axis=-1)
-
-def total_abs_err(y_true, y_pred):
-
-    #runs out of gpu memory on larger bacth sizes
-
-    y_pred = ops.convert_to_tensor(y_pred)
-    y_true = math_ops.cast(y_true, y_pred.dtype)
-
-    err = y_pred - y_true
-    abs_err = math_ops.abs(err)
-
-    return K.sum(abs_err, axis=-1)
-
-def total_err_squared(y_true, y_pred):
-    y_pred = ops.convert_to_tensor(y_pred)
-    y_true = math_ops.cast(y_true, y_pred.dtype)
-
-    err = y_pred - y_true
-    err_squared = K.square(err)
-
-    return K.sum(err_squared, axis=-1)
-
-def mean_weighted_abs_err(y_true, y_pred):
-    #assign descending weights to the values
-    #giving more impportance to the closest values
-    
-    y_pred = ops.convert_to_tensor(y_pred)
-    y_true = math_ops.cast(y_true, y_pred.dtype)
-
-    err = y_pred - y_true
-    abs_err = math_ops.abs(err)
-    temp_err = 0
-
-    for i in range(0, 10):
-        val = abs_err[0][i]
-        temp_err = temp_err + val * (11 - i) / (i + 1)
-
-    abs_err = abs_err + temp_err
-
-    return K.mean(abs_err, axis=-1)
-
-
 
 #in frames
 SEQ_LEN = 300
