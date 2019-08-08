@@ -11,9 +11,6 @@ from tensorflow.keras.layers import Dense, Dropout, LSTM, CuDNNLSTM, BatchNormal
 from tensorflow.keras import layers
 from sklearn.model_selection import train_test_split
 
-import tensorflow.python.util.deprecation as deprecation
-deprecation._PRINT_DEPRECATION_WARNINGS = False
-
 
 #in frames
 SEQ_LEN = 300
