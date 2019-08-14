@@ -38,9 +38,12 @@ function preload() {
   bgImg = loadImage('graphics/background.png');
 }
 
-function setup() {
+async function setup() {
   createCanvas(800, 600);
   reset();
+
+  model = await tf.loadLayersModel('models/model.json')
+  print(model)
 }
 
 function draw() {
@@ -126,7 +129,7 @@ function draw() {
 }
 
 function drawBirdLine(){
-  console.log(frameCount)
+  //console.log(frameCount)
 
 }
 
