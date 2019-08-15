@@ -40,6 +40,8 @@ def min_max_scaling(_df):
         max_val = max(_df[col])
         min_val = min(_df[col])
 
+        #print(col +" "+ str(max_val)+" "+str(min_val))
+
         _df[col] = (_df[col] - min_val) / (max_val - min_val)
 
     _df.dropna(inplace=True)
@@ -79,7 +81,7 @@ def build_seq(_df):
     return np.array(X), np.array(y)    
     
 main_df = pd.read_csv("flappyBird.csv")
-main_df = sk_scale_df(main_df)
+main_df = min_max_scaling(main_df)
 
 x_vals = np.linspace(start=0, stop=len(main_df), num=len(main_df))
 

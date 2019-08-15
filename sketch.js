@@ -31,6 +31,9 @@ var birdVeloctiyVals = [];
 var pipeCenterYVals = [];
 var nextPipe = null;
 
+var tfWorker;
+var pred;
+
 function preload() {
   pipeBodySprite = loadImage('graphics/pipe_marshmallow_fix.png');
   pipePeakSprite = loadImage('graphics/pipe_marshmallow_fix.png');
@@ -42,9 +45,17 @@ async function setup() {
   createCanvas(800, 600);
   reset();
 
-  model = await tf.loadLayersModel('models/model.json')
-  print(model)
+  tfWorker = new Worker("tfWorker.js");
+  
+  setInterval(() => {
+    tfWorker.postMessage([birdYVals, birdJumpVals, birdVeloctiyVals, pipeCenterYVals]);
+  }, 1000);
+
+  tfWorker.onmessage = function(e) {
+    pred = e.data;
+  }
 }
+
 
 function draw() {
   if(isOver) return;
@@ -130,7 +141,9 @@ function draw() {
 
 function drawBirdLine(){
   //console.log(frameCount)
+  if(pred == null) return;
 
+  console.log(pred)
 }
 
 function showScores() {
@@ -167,6 +180,9 @@ function gameover() {
   document.body.appendChild(link); // Required for FF
   
   link.click();
+
+  //retrain model
+  //reset recorded values
 }
 
 function reset() {
