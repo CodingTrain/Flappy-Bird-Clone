@@ -40,7 +40,7 @@ def min_max_scaling(_df):
         max_val = max(_df[col])
         min_val = min(_df[col])
 
-        #print(col +" "+ str(max_val)+" "+str(min_val))
+        print(col +" "+ str(max_val)+" "+str(min_val))
 
         _df[col] = (_df[col] - min_val) / (max_val - min_val)
 
@@ -57,7 +57,7 @@ def build_seq(_df):
 
     out_df = _df.copy()
 
-    out_df = out_df.drop(["birdVelocity", "pipeY"], axis=1)#drops all the non x and y columns
+    out_df = out_df.drop(["birdVelocity", "pipeY"], axis=1)#drops all the non bird y and jump columns
 
     sequential_data = []
     for i in range(len(_df.values) - (SEQ_LEN + SEQ_LEN)):

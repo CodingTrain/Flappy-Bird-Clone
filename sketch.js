@@ -24,6 +24,7 @@ var isOver = false;
 
 var touched = false;
 var prevTouched = touched;
+var jumped = false;
 
 var birdYVals = [];
 var birdJumpVals = [];
@@ -33,6 +34,7 @@ var nextPipe = null;
 
 var tfWorker;
 var pred;
+var framesSinceLastPred = 0;
 
 function preload() {
   pipeBodySprite = loadImage('graphics/pipe_marshmallow_fix.png');
@@ -53,6 +55,7 @@ async function setup() {
 
   tfWorker.onmessage = function(e) {
     pred = e.data;
+    framesSinceLastPred = 0;
   }
 }
 
@@ -111,18 +114,15 @@ function draw() {
   // current touch points positions and IDs
   // here we check if touches' length is bigger than one
   // and set it to the touched var
-  touched = (touches.length > 0);
+  tempTouched = (touches.length > 0);
 
   // if user has touched then make bird jump
   // also checks if not touched before
   if (touched && !prevTouched) {
     bird.up();
-    birdJumpVals.push(1);
+    jumped = true;
   }
-  else{
-    birdJumpVals.push(0);
-  }
-
+  
   birdYVals.push(bird.y);
   birdVeloctiyVals.push(bird.velocity);
 
@@ -133,17 +133,37 @@ function draw() {
     pipeCenterYVals.push(0);
   }
 
-  drawBirdLine();
+  if(jumped){
+    birdJumpVals.push(1);
+  }
+  else{
+    birdJumpVals.push(0);
+  }
 
   // updates prevTouched
   prevTouched = touched;
+  jumped = false;
+
+  framesSinceLastPred++;
+
+  drawBirdLine();
 }
 
 function drawBirdLine(){
-  //console.log(frameCount)
   if(pred == null) return;
 
-  console.log(pred)
+  const disBetweenFrames = 3;
+
+  inViewBirdY = pred.slice(framesSinceLastPred);
+
+  beginShape(LINES);
+
+  for(var i = 0;i<inViewBirdY.length;i++){
+
+    vertex(i * disBetweenFrames, inViewBirdY[i]);
+  }
+
+  endShape();
 }
 
 function showScores() {
@@ -173,6 +193,7 @@ function gameover() {
     csvOutput += "\r\n";
   }
 
+  /*
   var encodedUri = encodeURI(csvOutput);
   var link = document.createElement("a");
   link.setAttribute("href", encodedUri);
@@ -180,7 +201,7 @@ function gameover() {
   document.body.appendChild(link); // Required for FF
   
   link.click();
-
+  */
   //retrain model
   //reset recorded values
 }
@@ -193,12 +214,25 @@ function reset() {
   bird = new Bird();
   pipes.push(new Pipe());
   gameoverFrame = frameCount - 1;
+  
+  touched = false;
+  jumped = false;
+  birdYVals = [];
+  birdJumpVals = [];
+  birdVeloctiyVals = [];
+  pipeCenterYVals = [];
+  nextPipe = null;
+  pred = null;
+  framesSinceLastPred = 0;
+  
   loop();
 }
 
 function keyPressed() {
   if (key === ' ') {
     bird.up();
+    jumped = true;
+
     if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
   }
 }

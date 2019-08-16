@@ -4,11 +4,8 @@ importScripts("sketch.js");
 var seqLen = 100;
 var model;
 
-
-birdY 568.0 176.39999999999958
-birdJump 0 0
-birdVelocity 18.2 -9.4
-pipeY 543.5794604336872 0.0
+maxVals = [600, 1, 18, 500];
+minVals = [170, 0, -10, 0];
 
 (async function main () {
     model = await tf.loadLayersModel('models/model.json');
@@ -19,9 +16,18 @@ onmessage = function(e) {
 
     if(e.data == null) return;
 
-    var pred = predict(e.data[0], e.data[1], e.data[2], e.data[3]);
+    //scale input arrays
+    scaledBirdYVals = scaleVals(e.data[0], 0);
+    scaledBirdJumpVals = scaleVals(e.data[1], 1);
+    scaledBirdVeloctiyVals = scaleVals(e.data[2], 2);
+    scaledPipeCenterYVals = scaleVals(e.data[3], 3);
 
-    postMessage(pred);
+    var pred = predict(scaledBirdYVals, scaledBirdJumpVals, scaledBirdVeloctiyVals, scaledPipeCenterYVals).dataSync();
+
+    //unscale prediction arrays
+    unScaledBirdYVals = unScaleVals(pred, 0);
+
+    postMessage(unScaledBirdYVals);
 }
 
 function transferLearn(){
@@ -53,10 +59,24 @@ function predict(birdYVals, birdJumpVals, birdVeloctiyVals, pipeCenterYVals){
     return pred;
 }
 
-function unScaleVals(){
-    
+function unScaleVals(valArr, valInd){
+
+    for(var i = 0;i<valArr.length;i++){
+        newVal = minVals[valInd] + (valArr[i] * (maxVals[valInd] - minVals[valInd]))
+        
+        valArr[i] = newVal;
+    } 
+
+    return valArr;
 }
 
-function scaleVals(){
+function scaleVals(valArr, valInd){
 
+    for(var i = 0;i<valArr.length;i++){
+        newVal = (valArr[i] - minVals[valInd]) / (maxVals[valInd] - minVals[valInd]);
+        
+        valArr[i] = newVal;
+    } 
+
+    return valArr;
 }
