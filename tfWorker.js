@@ -1,7 +1,7 @@
 importScripts("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest");
 importScripts("sketch.js");
 
-var seqLen = 300;
+var seqLen = 100;
 var model;
 
 maxVals = [600, 1, 18, 500];
