@@ -1,4 +1,4 @@
-importScripts(location.href+"js/sketch.js");
+importScripts("sketch.js");
 importScripts("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest");
 
 var seqLen = 100;
@@ -8,7 +8,7 @@ maxVals = [600, 1, 18, 500];
 minVals = [170, 0, -10, 0];
 
 (async function main () {
-    model = await tf.loadLayersModel(location.href+'models/lstm/model.json');
+    model = await tf.loadLayersModel('../models/lstm/model.json');
 }());
 
 
