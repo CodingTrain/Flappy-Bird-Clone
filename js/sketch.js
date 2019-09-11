@@ -37,21 +37,21 @@ var pred;
 var framesSinceLastPred = 0;
 
 function preload() {
-  pipeBodySprite = loadImage('graphics/pipe_marshmallow_fix.png');
-  pipePeakSprite = loadImage('graphics/pipe_marshmallow_fix.png');
-  birdSprite = loadImage('graphics/train.png');
-  bgImg = loadImage('graphics/background.png');
+  pipeBodySprite = loadImage('/graphics/pipe_marshmallow_fix.png');
+  pipePeakSprite = loadImage('/graphics/pipe_marshmallow_fix.png');
+  birdSprite = loadImage('/graphics/train.png');
+  bgImg = loadImage('/graphics/background.png');
+
+  tfWorker = new Worker("/js/tfWorker.js");
 }
 
 async function setup() {
   createCanvas(800, 600);
   reset();
-
-  tfWorker = new Worker("tfWorker.js");
   
   setInterval(() => {
     tfWorker.postMessage([birdYVals, birdJumpVals, birdVeloctiyVals, pipeCenterYVals]);
-  }, 1000);
+  }, 500);
 
   tfWorker.onmessage = function(e) {
     pred = e.data;

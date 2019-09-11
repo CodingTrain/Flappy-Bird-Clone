@@ -1,0 +1,3 @@
+-improve initial model load time and inference
+-ensure that the predictions arent delayed
+-add transfer learning
