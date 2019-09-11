@@ -8,8 +8,7 @@ maxVals = [600, 1, 18, 500];
 minVals = [170, 0, -10, 0];
 
 (async function main () {
-    host = "/Flapppy-Bird-Clone"
-    model = await tf.loadLayersModel(host+'/models/lstm/model.json');
+    model = await tf.loadLayersModel('/Flappy-Bird-Clone/models/lstm/model.json');
 }());
 
 
