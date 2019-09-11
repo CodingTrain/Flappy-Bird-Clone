@@ -37,10 +37,10 @@ var pred;
 var framesSinceLastPred = 0;
 
 function preload() {
-  pipeBodySprite = loadImage('../graphics/pipe_marshmallow_fix.png');
-  pipePeakSprite = loadImage('../graphics/pipe_marshmallow_fix.png');
-  birdSprite = loadImage('../graphics/train.png');
-  bgImg = loadImage('../graphics/background.png');
+  pipeBodySprite = loadImage('/Flappy-Bird-Clone/graphics/pipe_marshmallow_fix.png');
+  pipePeakSprite = loadImage('/Flappy-Bird-Clone/graphics/pipe_marshmallow_fix.png');
+  birdSprite = loadImage('/Flappy-Bird-Clone/graphics/train.png');
+  bgImg = loadImage('/Flappy-Bird-Clone/graphics/background.png');
 
   tfWorker = new Worker("./js/tfWorker.js");
 }
