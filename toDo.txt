@@ -1,3 +1,4 @@
 -improve initial model load time and inference
--ensure that the predictions arent delayed
+-ensure that the predictions arent delayed and getting stacked up
+-improve model accuaracy
 -add transfer learning
