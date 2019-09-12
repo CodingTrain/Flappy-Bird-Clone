@@ -1,4 +1,5 @@
 -improve initial model load time and inference
 -ensure that the predictions arent delayed and getting stacked up
 -improve model accuaracy
+-test out multi task learning to also predict jumps
 -add transfer learning
