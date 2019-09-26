@@ -36,13 +36,15 @@ var tfWorker;
 var pred;
 var framesSinceLastPred = 0;
 
-function preload() {
-  pipeBodySprite = loadImage(location.href+'graphics/pipe_marshmallow_fix.png');
-  pipePeakSprite = loadImage(location.href+'graphics/pipe_marshmallow_fix.png');
-  birdSprite = loadImage(location.href+'graphics/train.png');
-  bgImg = loadImage(location.href+'graphics/background.png');
+var host = location.href;//""
 
-  tfWorker = new Worker(location.href+"js/tfWorker.js");
+function preload() {
+  pipeBodySprite = loadImage(host+'graphics/pipe_marshmallow_fix.png');
+  pipePeakSprite = loadImage(host+'graphics/pipe_marshmallow_fix.png');
+  birdSprite = loadImage(host+'graphics/train.png');
+  bgImg = loadImage(host+'graphics/background.png');
+
+  tfWorker = new Worker(host+"js/tfWorker.js");
 }
 
 async function setup() {
