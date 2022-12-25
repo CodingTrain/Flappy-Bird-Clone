@@ -45,13 +45,13 @@ class Pipe {
   }
 
   drawHalf() {
-    let howManyNedeed = 0;
+    let howManyNeeded = 0;
     let peakRatio = pipePeakSprite.height / pipePeakSprite.width;
     let bodyRatio = pipeBodySprite.height / pipeBodySprite.width;
     //this way we calculate, how many tubes we can fit without stretching
-    howManyNedeed = Math.round(height / (this.w * bodyRatio));
+    howManyNeeded = Math.round(height / (this.w * bodyRatio));
     //this <= and start from 1 is just my HACK xD But it's working
-    for (let i = 0; i < howManyNedeed; ++i) {
+    for (let i = 0; i < howManyNeeded; ++i) {
       let offset = this.w * (i * bodyRatio + peakRatio);
       image(pipeBodySprite, -this.w / 2, offset, this.w, this.w * bodyRatio);
     }
